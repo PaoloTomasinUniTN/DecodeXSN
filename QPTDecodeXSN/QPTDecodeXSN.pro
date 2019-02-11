@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,11 +23,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # OpencCV 2.4.13
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../Code/Z_OPENCV/opencv2413/build/x64/vc12/lib/ \
+CONFIG(release, debug|release): LIBS += -L$$PWD/../../../Code/Z_OPENCV/opencv2413/build/x64/vc12/lib/ \
                                               -lopencv_core2413 \
                                               -lopencv_imgproc2413 \
                                               -lopencv_highgui2413
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../Code/Z_OPENCV/opencv2413/build/x64/vc12/lib/ \
+CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../Code/Z_OPENCV/opencv2413/build/x64/vc12/lib/ \
                                               -lopencv_core2413d \
                                               -lopencv_imgproc2413d \
                                               -lopencv_highgui2413d
