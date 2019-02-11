@@ -40,7 +40,8 @@ bool XsnDecoder::decode(QString filename)
     // get all indexes of every image
     std::vector<char> str = { -2, -54, -83, -34 };
     founds = findAllIndexes(buffer, str);
-    qDebug() << "founds.size(): " << founds.size() ;
+    frames = founds.size();
+    qDebug() << "founds.size(): " << frames ;
 
     if (founds.size() < 1) {
         qWarning() << "no images found";
@@ -53,7 +54,7 @@ bool XsnDecoder::decode(QString filename)
     for(int i=0; i < founds.size(); i++) {
 
         // grab data and time
-        QDateTime dateTime = extractTime(buffer, founds.at(i));
+        dateTime = extractTime(buffer, founds.at(i));
         qDebug() << QString::number(i) << ") dateTime: " << dateTime.toString("yyyy.MM.dd hh:mm:ss.zzz");
         qint64 msecs = dateTime.toMSecsSinceEpoch();
 
@@ -85,7 +86,6 @@ bool XsnDecoder::decode(QString filename)
 
         outputVideo << imgShow;
     }
-
 
 
 

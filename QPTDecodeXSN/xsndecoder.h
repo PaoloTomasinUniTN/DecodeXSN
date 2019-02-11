@@ -26,14 +26,17 @@ public:
 
     bool decode(QString filename);
 
+    QDateTime dateTime;
+    int frames;
+    QString basename;
+    QString mainFolder;
+
 signals:
 
 public slots:
 
 private:
 
-    QString basename;
-    QString mainFolder;
     cv::Mat lut;
 
     std::vector<char> readAllBytes(const char *filename);
@@ -42,6 +45,7 @@ private:
 
     std::vector<char> buffer;
     std::vector<std::size_t> founds;
+
 
     cv::Mat extractImage(std::vector<char> &buffer, size_t idx);
     QDateTime extractTime(std::vector<char> &buffer, size_t idx);

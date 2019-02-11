@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QDebug>
+#include <QDesktopServices>
 
 #include "xsndecoder.h"
 
@@ -24,13 +25,17 @@ private slots:
 
     void on_pb_run_clicked();
 
+
+
+    void on_pb_folder_clicked();
+
 private:
     Ui::MainWindow *ui;
 
     QString inputFilename = "";
     bool inputSelected = true;
 
-
+    XsnDecoder decoder;
 };
 
 #endif // MAINWINDOW_H
