@@ -24,7 +24,7 @@ class XsnDecoder : public QObject
 public:
     explicit XsnDecoder(QObject *parent = nullptr);
 
-    bool decode(QString filename);
+    bool decode(QString filename, bool saveRawImages);
 
     QDateTime dateTime;
     int frames;

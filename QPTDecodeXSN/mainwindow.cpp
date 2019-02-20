@@ -33,11 +33,12 @@ void MainWindow::on_tb_inputPath_clicked()
 
 void MainWindow::on_pb_run_clicked()
 {
-    bool ok = decoder.decode(inputFilename);
+    bool raw = ui->cb_rawImages->isChecked();
+    bool ok = decoder.decode(inputFilename,raw);
     ui->la_frames->setText(QString::number(decoder.frames));
     ui->la_data->setText(decoder.dateTime.toString("yyyy.MM.dd hh:mm:ss.zzz"));
-     ui->pb_run->setEnabled(false);
-     ui->pb_folder->setEnabled(true);
+    ui->pb_run->setEnabled(false);
+    ui->pb_folder->setEnabled(true);
 
 }
 

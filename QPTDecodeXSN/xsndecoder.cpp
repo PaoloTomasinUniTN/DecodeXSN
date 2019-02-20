@@ -21,7 +21,7 @@ XsnDecoder::XsnDecoder(QObject *parent) : QObject(parent)
     }
 }
 
-bool XsnDecoder::decode(QString filename)
+bool XsnDecoder::decode(QString filename, bool saveRawImages)
 {
 
 
@@ -62,7 +62,7 @@ bool XsnDecoder::decode(QString filename)
         cv::Mat image = extractImage(buffer, founds.at(i));
 
 
-        // visualize in real time
+        // visualize in real time and mat for video
         cv::Mat imgShow;
         image.convertTo(imgShow, CV_8UC1, 1.0 / 256.0);
         cv::resize(imgShow, imgShow, cv::Size(imgShow.cols * 10, imgShow.rows * 10));
@@ -73,10 +73,12 @@ bool XsnDecoder::decode(QString filename)
         //cv::waitKey(100); // Wait for a keystroke in the window
 
         // save to png
-        QString timeStr = QString("%1").arg(msecs, 20, 10, QChar('0'));
-        QString pngName = basename + "_" + timeStr + ".png";
-        std::string globalName = mainFolder.toStdString() + "/" + pngName.toStdString();
-        cv::imwrite(globalName, image);
+        if (saveRawImages) {
+            QString timeStr = QString("%1").arg(msecs, 20, 10, QChar('0'));
+            QString pngName = basename + "_" + timeStr + ".png";
+            std::string globalName = mainFolder.toStdString() + "/" + pngName.toStdString();
+            cv::imwrite(globalName, image);
+        }
 
         // create video
         if (!outputVideo.isOpened()) {
